@@ -8,6 +8,7 @@ var frames;
 var colidiu;
 var ie, isom;
 
+
 //TECLAS
 function teclaDown() {
     var tecla = event.keyCode;
@@ -69,14 +70,14 @@ function naveControls() {
 
     if(pjX <= 0) {
         pjX = 0;
-    } if(pjX >= 440) {
-        pjX = 440;
+    } if(pjX >= boxWidth - 64) {
+        pjX = boxWidth - 64;
     }
 
     if(pjY <= 0) {
         pjY = 0;
-    } if(pjY >= 540) {
-        pjY = 540;
+    } if(pjY >= boxHeight - 64) {
+        pjY = boxHeight - 64;
     }
 }
 //NAVE
@@ -200,10 +201,10 @@ function meteorsCollisionNave() {
         if(meteorsSelect[i]) {
 
             if( 
-                ( (nave.offsetTop <= (meteorsSelect[i].offsetTop + 35) ) && 
-                ( (nave.offsetTop + 55) >= meteorsSelect[i].offsetTop) ) && 
-                ( (nave.offsetLeft <= (meteorsSelect[i].offsetLeft + 36) ) &&
-                ( (nave.offsetLeft + 56 ) >= meteorsSelect[i].offsetLeft ) )
+                ( (nave.offsetTop <= (meteorsSelect[i].offsetTop + 45) ) && 
+                ( (nave.offsetTop + 45) >= meteorsSelect[i].offsetTop) ) && 
+                ( (nave.offsetLeft <= (meteorsSelect[i].offsetLeft + 45) ) &&
+                ( (nave.offsetLeft + 45 ) >= meteorsSelect[i].offsetLeft ) )
             ) {
                 makeExplosion(1, nave.offsetLeft + 32, nave.offsetTop + 32);
                 nave.style.display = "none";
@@ -226,6 +227,8 @@ function meteorsFodeuCollisionNave() {
                 ( (nave.offsetLeft <= (mFodeuSelect[i].offsetLeft + 80) ) &&
                 ( (nave.offsetLeft + 60) >= mFodeuSelect[i].offsetLeft ) )
             ) {
+                makeExplosion(1, nave.offsetLeft + 32, nave.offsetTop + 32);
+                nave.style.display = "none";
                 colidiu = true;
                 start = false;
                 
@@ -369,7 +372,7 @@ function playAgain() {
                 }
             }
             pjX = boxWidth / 2 - 30;
-            pjY = 530;
+            pjY = boxHeight;
             shootQnt = 10;
             scoreP = 0;
             muni.style.width = `100px`;
@@ -406,10 +409,10 @@ function play() {
 
     if(!start) {
         let ini = document.querySelector('.play');
-        let kvs = document.querySelector('#kvs');
+        //let kvs = document.querySelector('#kvs');
         ini.onclick = () => {
-            kvs.play();
-            kvs.volume = 0.1;
+            //kvs.play();
+            //kvs.volume = 0.1;
             ini.style.display = "none";
             start = true;
             gameLoop();
@@ -428,10 +431,11 @@ function play() {
     dirX = 0;
     dirY = 0;
     pjX = boxWidth / 2 - 32;
-    pjY = 530;
+    pjY = boxHeight;
     velJ = 8;
     nave = document.querySelector('.nave');
     nave.style.left = `${pjX}px`;
+    nave.style.top = `${pjY - 70}px`;
 
     //Shot
     velS = 5;
