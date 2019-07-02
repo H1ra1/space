@@ -285,8 +285,8 @@ function scoreF() {
 
 //Sounds/Exlplosion
 function makeExplosion(type, x, y) {
-    if(document.getElementById(`explosion${ie - 3}`)) {
-        document.getElementById(`explosion${ie - 3}`).remove();
+    if(document.getElementById(`explosion${ie - 1}`)) {
+        document.getElementById(`explosion${ie - 1}`).remove();
     }
 
     var boxExplo = document.querySelector('.box');
